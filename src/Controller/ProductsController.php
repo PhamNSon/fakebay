@@ -18,7 +18,7 @@ class ProductsController extends AppController
 		if ($this->request->getParam('action') === 'add') {
 			return true;
 		}
-		// The owner of an article can edit and delete it
+		// Actions of The owner of an product
 		if (in_array($this->request->getParam('action'), ['remove','sendmess'])) {
 			$productId = (int)$this->request->getParam('pass.0');
 			if ($this->Products->isOwnedBy($productId, $user['id'])) {
@@ -58,21 +58,7 @@ class ProductsController extends AppController
             'contain' => ['Users']
         ]);
 		$bids = $this->loadModel('Bids');
-		$a = 
-		$test = $bids->get(['product_id' => 1], [
-			'contain' => ['Users']
-		]);
-		pr($test);
-		
-/* 		$s = $bids->find();
-		$r = [];
-		foreach ($s as $e){
-			$r[] = $e->user_id;
-		}
-		$rebids = $bids->find()->where(['product_id' => $product->id])->limit(5)->order(['bid_price' => 'DESC']);
-		$u = $this->loadModel('Users');
- 		$rebidss = $u->find()->select(['name'])->where(['id IN' => $r]); */
-		
+		$test = $bids->find()->contain(['Users'])->where(['product_id'=>$id])->order(['bid_price' => 'DESC']);
 		//get random product in same category
 		$c = [];
 		$a = $categories->find();
@@ -84,7 +70,7 @@ class ProductsController extends AppController
 		//get max bid value
 		$count = $bids->find()->where(['product_id' => $product->id])->count();
 		$maxbids = $bids->find()->select(['bid_price' => 'Max(Bids.bid_price)'])->where(['product_id' => $id])->first();
-		$this->set(compact('rebids', 'test', 'count','maxbids'));
+		$this->set(compact('test', 'count','maxbids'));
         $this->set('product', $product);
         $this->set('_serialize', ['product']);
     }

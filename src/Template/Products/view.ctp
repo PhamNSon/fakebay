@@ -24,7 +24,7 @@
 				</tr>
 				<tr>
 					<td><?= __('Current Bid') ?></td>
-					<td><b><input id="bidprice" type="hidden" />$<?php if($count != '0') { echo $maxbids->bid_price; }else { echo $product->base_price; } ?></b></td>
+					<td><b><input id="bidprice" value="<?php if($count != '0') { echo $maxbids->bid_price; }else { echo $product->base_price; } ?>" hidden />$<?php if($count != '0') { echo $maxbids->bid_price; }else { echo $product->base_price; } ?></b></td>
 				</tr>
 				<tr>
 					<td><?= __('Time Out') ?></td>
@@ -52,11 +52,13 @@
 		<div class="col-md-3 well">
 			<div class=""><h1><?= __('Recent Bids') ?></h1></div>
 			<div class="col-md-12">
+				<?php foreach ($test as $test1) : ?>
 					<ul class=" list-group">
-						<li>$<?= h($test->bid_price) ?></li>
-						<li><?= h($test->created) ?></li>
-						<li style="font-style: italic;">By <?= h($test->user->name) ?></li>
+						<li>$<?= h($test1->bid_price) ?></li>
+						<li><?= h($test1->created) ?></li>
+						<li style="font-style: italic;">By <?= h($test1->user->name) ?></li>
 					</ul>
+				<?php endforeach; ?>
 			</div>
 		</div>
 	</div>
@@ -111,9 +113,9 @@ $(function() {
 	$("#sendbid").click(function(event){
 		var bidval = $('#bidvalu').val();
 		var pr_id = $('#pro_id').val();
-		var curval = $('#baseprice').val();
-		var currentvalue = parseInt(curval);
-		var bidvalues = parseInt(bidval);
+		var curval = $('#bidprice').val();
+		var currentvalue = parseFloat(curval);
+		var bidvalues = parseFloat(bidval);
 		if (currentvalue < bidvalues) {
 			$.ajax({
 			type: 'POST',
@@ -124,7 +126,7 @@ $(function() {
 				'product_id' : pr_id
 				},
 			error:function(msg){
-				alert('Bid sent!');
+				alert('Sending...!');
 			},
 			});
 		}else {
@@ -155,7 +157,7 @@ $(function() {
 			url: '/fakebay/Question/sendmess',
 			data : dataString,
 			error:function(msg){
-				alert('Question sent!');
+				alert('Sending...!');
 			},
 			});
 		}

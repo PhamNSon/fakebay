@@ -18,7 +18,7 @@
 				<th><?= __("Product's ID") ?></th>
                 <th><?= __('Image') ?></th>
                 <th><?= __('Name') ?></th>
-                <th><?= __('Current Bid') ?></th>
+                <th><?= __('Base Price') ?></th>
                 <th><?= __('Time Left') ?></th>
 				<th class="hidden"><?= __('End Time') ?></th>
                 <th><?= __('') ?></th>
@@ -30,11 +30,11 @@
                 <td><?= h($products->name) ?></td>
                 <td>$<?= h($products->base_price) ?></td>
                 <td><b id="timeout"></b></td>
-				<td class="hidden"><b><input type="datetime" id="timeend" class="text-center" value="<?= h($products->bid_end) ?>" /></b></td>
+				<td class="hidden" id="ddd"><p><input type="datetime" id="" class="text-center timeend" value="<?= h($products->bid_end) ?>" /></p></td>
                 <td class="actions">
 					<ul>
 						<li><?= $this->Form->postLink(__('Remove'), ['controller' => 'Products', 'action' => 'remove', $products->id], ['confirm' => __('Are you sure you want to delete your product?', $products->id)]) ?></li>
-						<li><?= $this->Html->link(__('Show Bids'), ['controller' => 'Bids', 'action' => 'view', $products->id]) ?></li>
+						<li><?= $this->Html->link(__('Show Bids'), ['controller' => 'Bids', 'action' => 'checkbid', $products->id]) ?></li>
 					</ul>
                 </td>
             </tr>
@@ -100,7 +100,11 @@
 
 <script>
 // Set the date we're counting down to
-var endDate = document.getElementById('timeend').value;
+var elements = document.getElementsByClassName("timeend");
+var endDate = "";
+for (var i=0;i<elements.length;i++) {
+endDate = elements[i].value;
+alert(endDate);
 var countDownDate = new Date(endDate).getTime();
 
 // Update the count down every 1 second
@@ -125,7 +129,8 @@ var x = setInterval(function() {
     // If the count down is over, write some text 
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("timeout").innerHTML = "EXPIRED";
+        $("#timeout").innerHTML = "EXPIRED";
     }
 }, 1000);
+}
 </script>
