@@ -9,11 +9,11 @@
         <legend><?= __('Add New Product') ?></legend>
         <div class="form-group">
             <label>Name</label>
-            <input class="form-control" type="text" name="name" required="required">
+            <input class="form-control" type="text" name="name" />
         </div>
         <div class="form-group">
             <label>Base Price</label>
-            <input class="form-control" type="text" name="base_price" required="required" >
+            <input class="form-control" type="text" name="base_price" />
         </div>
         <div class="form-group">
             <label>End Date</label>

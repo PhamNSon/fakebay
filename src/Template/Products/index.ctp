@@ -9,7 +9,7 @@
         <tbody class="col-md-12 row">
             <?php foreach ($products as $product): ?>
 				<ul class="col-md-3 col-md-offset-1 list-group text-center">
-					<li><?php echo $this->Html->image("Products/$product->image_url", array('url' => array('controller' => 'Products', 'action' => 'view', $product->id), 'class' => 'col-md-12', 'height' => '100px', 'data-toggle' => 'tooltip', 'title' => $product->name)); ?></li>
+					<li><?php echo $this->Html->image("Products/$product->image_url", array('url' => array('controller' => 'Products', 'action' => 'view', $product->id), 'class' => 'col-md-12', 'height' => '200px', 'data-toggle' => 'tooltip', 'title' => $product->name)); ?></li>
 					<li data-toggle="tooltip" title="<?= h($product->name) ?>"><?php echo substr($product->name,0,10); ?>...</li>
 					<li>$<?= $this->Number->format($product->base_price) ?></li>
 				</ul>

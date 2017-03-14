@@ -75,25 +75,25 @@ class ProductsTable extends Table
 
         $validator
             ->requirePresence('image_url', 'create')
-            ->notEmpty('image_url');
+            ->notEmpty('image_url',"Please insert product's image");
 
         $validator
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmpty('name', "Please enter product's name");
 
         $validator
             ->requirePresence('desciption', 'create')
-            ->notEmpty('desciption');
+            ->notEmpty('desciption', "Please enter product's desciption");
 
         $validator
             ->numeric('base_price')
             ->requirePresence('base_price', 'create')
-            ->notEmpty('base_price');
+            ->notEmpty('base_price', "Please enter product's base price");
 
         $validator
             ->dateTime('bid_end')
             ->requirePresence('bid_end', 'create')
-            ->notEmpty('bid_end');
+            ->notEmpty('bid_end', "Please enter product's end date");
 
         $validator
             ->boolean('status')

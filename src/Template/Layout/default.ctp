@@ -23,7 +23,7 @@ $cakeDescription = 'Fashion, Sport, Electronic and More | Ebay Fake';
     <title>
         <?= $cakeDescription ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
+    
 
     <?= $this->Html->css('bootstrap.min.css') ?>
 	<?= $this->Html->css('other.css') ?>
@@ -34,7 +34,6 @@ $cakeDescription = 'Fashion, Sport, Electronic and More | Ebay Fake';
 	<?= $this->Html->script('bootstrap.min.js') ?>
 	<?= $this->Html->script('bootstrap-datetimepicker.min.js') ?>
 	<?= $this->Html->script('bootstrap-datetimepicker.en.js') ?>
-
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
